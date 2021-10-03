@@ -1,2 +1,2 @@
-# fm-algorithms-exercises
+# algorithms-exercises
 Created with CodeSandbox
