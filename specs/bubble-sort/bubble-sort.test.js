@@ -12,6 +12,19 @@
 
 function bubbleSort(nums) {
   // code goes here
+  let swap = 1;
+  while (swap > 0) {
+    swap = 0;
+    for (let i = 0; i < nums.length - 1; i++) {
+      if (nums[i] > nums[i + 1]) {
+        let temp = nums[i + 1];
+        nums[i + 1] = nums[i];
+        nums[i] = temp;
+        swap++;
+      }
+    }
+  }
+  return nums;
 }
 
 // unit tests
