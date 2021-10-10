@@ -25,15 +25,88 @@
 
 class LinkedList {
   // code goes here
+  constructor() {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+
+  push(value) {
+    let node = new Node(value);
+    if (!this.head) {
+      this.head = node;
+    } else {
+      this.tail.next = node;
+    }
+    this.tail = node;
+    this.length++;
+  }
+
+  pop() {
+    let current = this.head;
+    let now;
+    while (current.next) {
+      now = current;
+      current = current.next;
+    }
+    now.next = null;
+    this.length--;
+    this.tail = now;
+    return current.value;
+  }
+
+  get(index) {
+    let current = this.head;
+
+    for (let i = 0; i < index; i++) {
+      current = current.next;
+      if (!current) {
+        return null;
+      }
+    }
+    return current.value;
+  }
+
+  delete(index) {
+    if (index === this.length - 1) {
+      this.pop();
+    }
+
+    if (index === 0) {
+      const head = this.head;
+      if (head) {
+        this.head = head.next;
+      } else {
+        this.head = null;
+      }
+      this.length--;
+      return head.value;
+    } else {
+      let current = this.head;
+      let now;
+      for (let i = 0; i < index; i++) {
+        now = current;
+        current = current.next;
+      }
+      now.next = current.next;
+      current.next = null;
+      this.length--;
+      return current.value;
+    }
+  }
 }
 
 class Node {
   // code goes here
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
 }
 
 // unit tests
 // do not modify the below code
-describe.skip("LinkedList", function () {
+describe("LinkedList", function () {
   const range = (length) =>
     Array.apply(null, { length: length }).map(Number.call, Number);
   const abcRange = (length) =>
